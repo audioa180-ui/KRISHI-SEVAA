@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KRISHI SEVA — Crop Disease Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="tricolor-bar"></div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <div class="title">KRISHI SEVA</div>
+          <div class="subtitle">AI-powered Crop Health</div>
+        </div>
+      </a>
+      <div class="top-actions">
+        <button class="tab-btn" data-target="analyzer" type="button" data-i18n="tab_analyzer">Analyzer</button>
+        <button class="tab-btn" data-target="schemes" type="button" data-i18n="tab_schemes">Schemes</button>
+        <button class="tab-btn" data-target="chat" type="button" data-i18n="tab_chat">Chatbot</button>
+        <button class="tab-btn" data-target="therapy" type="button" data-i18n="tab_therapy">Therapy</button>
+        <button class="tab-btn" data-target="weather" type="button" data-i18n="tab_weather">Weather</button>
+        <select id="langSelect" aria-label="Language" style="padding:8px;border-radius:10px;background:#0f2a15;color:#eaf6ed;border:1px solid rgba(255,255,255,.12)">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="section-analyzer-hero">
+      <div class="hero-inner">
+        <div>
+          <span class="badge"><span class="dot"></span> Smart Farming Assistant</span>
+          <h1 data-i18n="hero_title">Detect plant diseases instantly</h1>
+          <p class="punch" data-i18n="hero_sub">Upload a photo of your crop. KRISHI SEVA analyzes it using AI and suggests causes and remedies. Designed for Indian farmers with a proud tricolor theme.</p>
+
+          <div class="farmer-quote" aria-label="Farmer's message">
+            <div class="mark" aria-hidden="true">“</div>
+            <p>
+              The soil is our mother and the crop is our hope. With the right knowledge at the
+              right time, we protect our fields and feed our families. Let technology walk with
+              the farmer—so every leaf stays healthy and every harvest is proud.
+            </p>
+            <div class="cite">— Voice of an Indian Farmer</div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card">
+            <h3 data-i18n="upload_title">Upload your crop image</h3>
+            <div class="dropzone" role="button" tabindex="0" aria-label="Upload crop image">
+              <input id="imageInput" type="file" name="image" accept="image/*" />
+              <div class="preview">
+                <div class="placeholder" data-i18n="no_image">No image selected</div>
+                <img src="" alt="Preview"/>
+              </div>
+              <div class="actions">
+                <button id="btnAnalyze" class="btn" type="button" data-i18n="analyze_btn">Analyze Image</button>
+                <button id="btnClear" class="btn secondary" type="button" data-i18n="clear_btn">Clear</button>
+              </div>
+              <div id="statusMsg" class="status" role="status" aria-live="polite"></div>
+              <div class="loader"><div class="wheel"></div> <span data-i18n="analyzing">Analyzing with AI...</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-analyzer-result">
+      <div class="card result">
+        <span class="pill" data-i18n="result_title">Analysis Result</span>
+        <div class="kv">
+          <!-- Key values rendered here -->
+        </div>
+        <div style="margin-top:8px"><strong data-i18n="remedies_title">Remedies</strong></div>
+        <ul class="remedies"></ul>
+      </div>
+    </section>
+
+    <!-- Latest Government Schemes -->
+    <section class="section" id="section-schemes">
+      <div class="card">
+        <h3 data-i18n="schemes_title">Latest Government Schemes</h3>
+        <div style="margin-bottom:10px">
+          <button id="schemesRefresh" class="btn secondary" type="button" data-i18n="schemes_refresh">Refresh Schemes</button>
+        </div>
+        <div id="schemesList" class="schemes"></div>
+      </div>
+    </section>
+
+    <!-- Chatbot -->
+    <section class="section" id="section-chat">
+      <div class="card">
+        <h3 data-i18n="chat_title">Agri Assistant Chatbot</h3>
+        <div class="chat">
+          <div id="chatWindow" class="chat-window" aria-live="polite"></div>
+          <div class="chat-input">
+            <input id="chatMessage" type="text" placeholder="Ask about crops, pests, remedies..." data-i18n-ph="chat_placeholder" />
+            <button id="chatSend" class="btn" type="button" data-i18n="send_btn">Send</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mental Wellness Therapy Chat -->
+    <section class="section" id="section-therapy">
+      <div class="card">
+        <h3 data-i18n="therapy_title">Mental Wellness Support</h3>
+        <div class="chat">
+          <div id="therapyWindow" class="chat-window" aria-live="polite"></div>
+          <div class="chat-input">
+            <input id="therapyMessage" type="text" placeholder="Share how you’re feeling..." data-i18n-ph="therapy_placeholder" />
+            <button id="therapySend" class="btn" type="button" data-i18n="send_btn">Send</button>
+          </div>
+          <div class="scheme-desc" style="margin-top:6px;" data-i18n="therapy_disclaimer">This is supportive guidance only, not a substitute for professional care.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weather Report -->
+    <section class="section" id="section-weather">
+      <div class="card">
+        <h3 data-i18n="weather_title">Weather Report</h3>
+        <div class="weather">
+          <div class="weather-controls">
+            <button id="weatherDetect" class="btn secondary" type="button" data-i18n="weather_use_loc">Use My Location</button>
+            <input id="latInput" type="number" step="0.0001" placeholder="Latitude" data-i18n-ph="lat_ph" />
+            <input id="lonInput" type="number" step="0.0001" placeholder="Longitude" data-i18n-ph="lon_ph" />
+            <button id="weatherFetch" class="btn" type="button" data-i18n="weather_fetch">Fetch Weather</button>
+          </div>
+          <div id="weatherCard" class="weather-card"></div>
+          <div id="weatherSummary" class="weather-summary"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="footer-flag" aria-hidden="true"></div>
+    <div style="margin-top:10px" data-i18n="footer_text">© <span id="yr"></span> KRISHI SEVA • Jai Jawan, Jai Kisan</div>
+  </footer>
+  <script>
+    // small helper to set year without extra JS file bloat
+    document.addEventListener('DOMContentLoaded', ()=>{ const y=document.getElementById('yr'); if(y) y.textContent=new Date().getFullYear(); });
+  </script>
+</body>
+</html>

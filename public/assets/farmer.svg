@@ -1,0 +1,22 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="skin" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#F4C38B"/>
+    <stop offset="1" stop-color="#E7A867"/>
+  </linearGradient>
+  <linearGradient id="kurta" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0" stop-color="#0bd49a"/>
+    <stop offset="1" stop-color="#24e0b2"/>
+  </linearGradient>
+</defs>
+<rect width="128" height="128" rx="18" fill="#0f2a15"/>
+<circle cx="64" cy="46" r="20" fill="url(#skin)"/>
+<rect x="28" y="68" width="72" height="40" rx="12" fill="url(#kurta)"/>
+<path d="M24 84c12-6 24-9 40-9s28 3 40 9" stroke="#094b2f" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+<path d="M40 44c6-6 16-10 24-10s18 4 24 10" stroke="#7a4f2b" stroke-width="8" stroke-linecap="round"/>
+<rect x="22" y="24" width="84" height="18" rx="9" fill="#D7A14A"/>
+<rect x="18" y="18" width="92" height="14" rx="7" fill="#E8BB5A"/>
+<circle cx="54" cy="46" r="4" fill="#5a371d"/>
+<circle cx="74" cy="46" r="4" fill="#5a371d"/>
+<path d="M54 58c6 4 14 4 20 0" stroke="#5a371d" stroke-width="4" stroke-linecap="round"/>
+</svg>
