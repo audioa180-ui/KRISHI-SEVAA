@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: __dirname + '/.env' });
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
@@ -6,7 +6,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.static("public"));
